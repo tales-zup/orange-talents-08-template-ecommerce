@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Usuario {
@@ -19,20 +19,20 @@ public class Usuario {
     private String login;
 
     @NotEmpty
-    @Min(value = 6)
+    @Size(min = 6)
     private String senha;
 
     @NotNull
-    private LocalDate dataCadastro;
+    private LocalDateTime dataCadastro;
 
     public Usuario() {
-        this.dataCadastro = LocalDate.now();
+        this.dataCadastro = LocalDateTime.now();
     }
 
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
-        this.dataCadastro = LocalDate.now();
+        this.dataCadastro = LocalDateTime.now();
     }
 
     public String getLogin() {
@@ -43,7 +43,7 @@ public class Usuario {
         return senha;
     }
 
-    public LocalDate getDataCadastro() {
+    public LocalDateTime getDataCadastro() {
         return dataCadastro;
     }
 }

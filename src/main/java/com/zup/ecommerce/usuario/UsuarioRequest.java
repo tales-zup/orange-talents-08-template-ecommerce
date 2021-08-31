@@ -1,8 +1,8 @@
 package com.zup.ecommerce.usuario;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class UsuarioRequest {
 
@@ -11,7 +11,7 @@ public class UsuarioRequest {
     private String login;
 
     @NotEmpty
-    @Min(value = 6)
+    @Size(min = 6)
     private String senha;
 
     public String getLogin() {
