@@ -34,4 +34,16 @@ public class Usuario {
         this.senha = senha;
         this.dataCadastro = LocalDate.now();
     }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
 }
