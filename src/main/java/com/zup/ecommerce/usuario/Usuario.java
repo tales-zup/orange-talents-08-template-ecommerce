@@ -29,6 +29,11 @@ public class Usuario {
         this.dataCadastro = LocalDateTime.now();
     }
 
+    /**
+     *
+     * @param login
+     * @param senha deve entrar ja criptografada
+     */
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = senha;
