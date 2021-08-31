@@ -2,6 +2,7 @@ package com.zup.ecommerce.usuario;
 
 import com.zup.ecommerce.commons.HashService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ public class UsuarioController {
     private HashService hashService;
 
     @PostMapping
+    @Transactional
     public UsuarioDto cadastrarUsuario(@RequestBody @Valid UsuarioRequest request) {
         String senha = hashService.hash(request.getSenha());
         Usuario usuario = new Usuario(request.getLogin(), senha);
