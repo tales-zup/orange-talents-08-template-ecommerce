@@ -1,27 +1,17 @@
 package com.zup.ecommerce.categoria;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+public class CategoriaDto {
 
-@Entity
-public class Categoria {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     private String nome;
 
-    @ManyToOne
     private Categoria categoriaMae;
 
-    public Categoria() {
-    }
-
-    public Categoria(String nome, Categoria categoriaMae) {
+    public CategoriaDto(Long id, String nome, Categoria categoria) {
+        this.id = id;
         this.nome = nome;
-        this.categoriaMae = categoriaMae;
+        this.categoriaMae = categoria;
     }
 
     public Long getId() {
