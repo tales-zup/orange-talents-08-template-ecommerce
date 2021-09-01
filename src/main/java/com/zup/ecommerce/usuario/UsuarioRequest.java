@@ -14,6 +14,11 @@ public class UsuarioRequest {
     @Size(min = 6)
     private String senha;
 
+    public UsuarioRequest(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
+
     public String getLogin() {
         return login;
     }

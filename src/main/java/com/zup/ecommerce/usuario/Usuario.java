@@ -19,7 +19,6 @@ public class Usuario {
     private String login;
 
     @NotEmpty
-    @Size(min = 6)
     private String senha;
 
     @NotNull
