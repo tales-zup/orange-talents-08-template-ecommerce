@@ -1,0 +1,26 @@
+package com.zup.ecommerce.usuario.login;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
+public class LoginRequest {
+
+    private String login;
+    private String senha;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public UsernamePasswordAuthenticationToken converter() {
+        return new UsernamePasswordAuthenticationToken(this.login, this.senha);
+    }
+
+}

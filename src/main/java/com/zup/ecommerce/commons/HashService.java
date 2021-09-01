@@ -11,4 +11,9 @@ public class HashService {
         return encoder.encode(senha);
     }
 
+    public Boolean isSenhaValida(String senhaAberta, String senhaFechada) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.matches(senhaAberta, senhaFechada);
+    }
+
 }
