@@ -7,17 +7,19 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = ValorUnicoValidador.class)
+@Constraint(validatedBy = ExistsIdValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValorUnico {
+public @interface ExistsId {
 
-    String mensagem() default "Registro duplicado.";
+    String message() default "Registro duplicado.";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
     String nomeDoCampo();
 
     Class<?> classe();
+
+    boolean opcional() default false;
 
 }

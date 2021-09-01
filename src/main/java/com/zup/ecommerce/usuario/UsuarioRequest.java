@@ -10,7 +10,7 @@ public class UsuarioRequest {
 
     @NotEmpty
     @Email
-    @ValorUnico(domainClass = Usuario.class, fieldName = "login", message = "Já existe um usuário com este email.")
+    @ValorUnico(classe = Usuario.class, nomeDoCampo = "login", mensagem = "Já existe um usuário com este email.")
     private String login;
 
     @NotEmpty
