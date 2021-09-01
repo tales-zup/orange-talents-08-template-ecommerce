@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ExistsId {
 
-    String message() default "Registro duplicado.";
+    String mensagem() default "Registro duplicado.";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
