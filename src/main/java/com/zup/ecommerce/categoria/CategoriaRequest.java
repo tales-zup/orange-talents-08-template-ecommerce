@@ -12,7 +12,7 @@ public class CategoriaRequest {
     @ValorUnico(classe = Categoria.class, nomeDoCampo = "nome", message = "Já existe uma categoria com esse nome.")
     private String nome;
 
-    @ExistsId(classe = Categoria.class, nomeDoCampo = "id", opcional = true)
+    @ExistsId(classe = Categoria.class, nomeDoCampo = "id", opcional = true, message = "Essa categoria mãe não existe.")
     private Long idCategoriaMae;
 
     public CategoriaRequest(String nome, Long idCategoriaMae) {
