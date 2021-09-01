@@ -1,5 +1,7 @@
 package com.zup.ecommerce.usuario;
 
+import com.zup.ecommerce.commons.validation.ValorUnico;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -8,6 +10,7 @@ public class UsuarioRequest {
 
     @NotEmpty
     @Email
+    @ValorUnico(domainClass = Usuario.class, fieldName = "login", message = "Já existe um usuário com este email.")
     private String login;
 
     @NotEmpty
