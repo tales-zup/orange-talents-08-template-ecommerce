@@ -4,7 +4,10 @@ import com.zup.ecommerce.caracteristica.Caracteristica;
 import com.zup.ecommerce.caracteristica.CaracteristicaRepository;
 import com.zup.ecommerce.caracteristica.CaracteristicaRequest;
 import com.zup.ecommerce.categoria.CategoriaRepository;
+import com.zup.ecommerce.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +34,9 @@ public class ProdutoController {
     @PostMapping
     @Transactional
     public ProdutoDto cadastrarProduto(@RequestBody @Valid ProdutoRequest request) {
-        Produto produto = request.toModel(categoriaRepository);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario logado = (Usuario) authentication.getPrincipal();
+        Produto produto = request.toModel(categoriaRepository, logado);
         List<Caracteristica> caracteristicas = new ArrayList<>();
 
         produto = produtoRepository.save(produto);

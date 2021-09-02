@@ -1,17 +1,15 @@
 package com.zup.ecommerce.produto;
 
-
-import com.zup.ecommerce.caracteristica.Caracteristica;
 import com.zup.ecommerce.caracteristica.CaracteristicaRequest;
 import com.zup.ecommerce.categoria.Categoria;
 import com.zup.ecommerce.categoria.CategoriaRepository;
 import com.zup.ecommerce.commons.validation.ExistsId;
+import com.zup.ecommerce.usuario.Usuario;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProdutoRequest {
 
@@ -19,7 +17,7 @@ public class ProdutoRequest {
     private String nome;
 
     @NotNull
-    @DecimalMin(value = "0.1")
+    @Positive
     private BigDecimal valor;
 
     @NotNull
@@ -36,11 +34,12 @@ public class ProdutoRequest {
 
     @NotNull
     @Size(min = 3, message = "A quantidade miníma de caracteristicas é 3.")
+    @Valid
     private List<CaracteristicaRequest> caracteristicas;
 
-    public Produto toModel(CategoriaRepository categoriaRepository) {
+    public Produto toModel(CategoriaRepository categoriaRepository, Usuario usuario) {
         Categoria categoria = categoriaRepository.findById(idCategoria).orElseThrow();
-        return new Produto(nome, valor, quantidade, descricao, categoria);
+        return new Produto(nome, valor, quantidade, descricao, categoria, usuario);
     }
 
     public String getNome() {

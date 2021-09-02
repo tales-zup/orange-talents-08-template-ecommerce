@@ -1,6 +1,7 @@
 package com.zup.ecommerce.produto;
 
 import com.zup.ecommerce.categoria.Categoria;
+import com.zup.ecommerce.usuario.Usuario;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -18,7 +19,7 @@ public class Produto {
     private String nome;
 
     @NotNull
-    @DecimalMin(value = "0.1")
+    @Positive
     private BigDecimal valor;
 
     @NotNull
@@ -34,17 +35,22 @@ public class Produto {
     private Categoria categoria;
 
     @NotNull
+    @ManyToOne
+    private Usuario usuario;
+
+    @NotNull
     private LocalDateTime dataCadastro;
 
     public Produto() {
     }
 
-    public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao, Categoria categoria) {
+    public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao, Categoria categoria, Usuario usuario) {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.categoria = categoria;
+        this.usuario = usuario;
         this.dataCadastro = LocalDateTime.now();
     }
 
