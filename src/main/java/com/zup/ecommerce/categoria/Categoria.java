@@ -1,7 +1,7 @@
 package com.zup.ecommerce.categoria;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Categoria {
@@ -10,7 +10,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     private String nome;
 
     @ManyToOne

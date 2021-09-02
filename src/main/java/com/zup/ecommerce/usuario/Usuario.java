@@ -18,11 +18,11 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     @Email
     private String login;
 
-    @NotEmpty
+    @NotBlank
     private String senha;
 
     @NotNull

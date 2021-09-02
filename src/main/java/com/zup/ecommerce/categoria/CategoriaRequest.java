@@ -3,12 +3,12 @@ package com.zup.ecommerce.categoria;
 import com.zup.ecommerce.commons.validation.ExistsId;
 import com.zup.ecommerce.commons.validation.ValorUnico;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.util.Optional;
 
 public class CategoriaRequest {
 
-    @NotEmpty
+    @NotBlank
     @ValorUnico(classe = Categoria.class, nomeDoCampo = "nome", message = "Já existe uma categoria com esse nome.")
     private String nome;
 
