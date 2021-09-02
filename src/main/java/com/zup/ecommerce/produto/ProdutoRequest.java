@@ -1,21 +1,13 @@
 package com.zup.ecommerce.produto;
 
-import com.zup.ecommerce.categoria.Categoria;
 
-import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
-@Entity
-public class Produto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ProdutoRequest {
 
     @NotBlank
     private String nome;
@@ -32,10 +24,25 @@ public class Produto {
     private String descricao;
 
     @NotNull
-    @ManyToOne
-    private Categoria categoria;
+    private Long idCategoria;
 
-    @NotNull
-    private LocalDateTime dataCadastro;
+    public String getNome() {
+        return nome;
+    }
 
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
 }
