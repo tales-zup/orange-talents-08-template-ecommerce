@@ -10,4 +10,11 @@ public class CaracteristicaRequest {
     @NotBlank
     private String descricao;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

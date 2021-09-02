@@ -1,51 +1,32 @@
 package com.zup.ecommerce.produto;
 
+import com.zup.ecommerce.caracteristica.Caracteristica;
 import com.zup.ecommerce.categoria.Categoria;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
-public class Produto {
+public class ProdutoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     private String nome;
-
-    @NotNull
-    @DecimalMin(value = "0.1")
     private BigDecimal valor;
-
-    @NotNull
-    @Min(value = 0)
     private Integer quantidade;
-
-    @NotBlank
-    @Size(max = 1000)
     private String descricao;
-
-    @NotNull
-    @ManyToOne
     private Categoria categoria;
-
-    @NotNull
+    private List<Caracteristica> caracteristicas;
     private LocalDateTime dataCadastro;
 
-    public Produto() {
-    }
-
-    public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao, Categoria categoria) {
+    public ProdutoDto(Long id, String nome, BigDecimal valor, Integer quantidade, String descricao,
+                      Categoria categoria, List<Caracteristica> caracteristicas, LocalDateTime dataCadastro) {
+        this.id = id;
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.categoria = categoria;
-        this.dataCadastro = LocalDateTime.now();
+        this.caracteristicas = caracteristicas;
+        this.dataCadastro = dataCadastro;
     }
 
     public Long getId() {
@@ -70,6 +51,10 @@ public class Produto {
 
     public Categoria getCategoria() {
         return categoria;
+    }
+
+    public List<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
     }
 
     public LocalDateTime getDataCadastro() {
