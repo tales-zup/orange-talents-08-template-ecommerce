@@ -2,7 +2,6 @@ package com.zup.ecommerce.opiniao;
 
 import com.zup.ecommerce.produto.Produto;
 import com.zup.ecommerce.usuario.Usuario;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
