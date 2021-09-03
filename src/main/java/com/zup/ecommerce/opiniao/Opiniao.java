@@ -2,11 +2,10 @@ package com.zup.ecommerce.opiniao;
 
 import com.zup.ecommerce.produto.Produto;
 import com.zup.ecommerce.usuario.Usuario;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 public class Opiniao {
@@ -17,6 +16,9 @@ public class Opiniao {
 
     @NotBlank
     private String titulo;
+
+    @Min(1) @Max(5)
+    private Integer nota;
 
     @NotBlank
     @Size(max = 500)
@@ -38,5 +40,25 @@ public class Opiniao {
         this.descricao = descricao;
         this.produto = produto;
         this.usuario = usuario;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }
