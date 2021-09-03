@@ -7,6 +7,10 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Produto {
@@ -38,6 +42,9 @@ public class Produto {
     @ManyToOne
     private Usuario usuario;
 
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<ImagemProduto> imagens = new HashSet<>();
+
     @NotNull
     private LocalDateTime dataCadastro;
 
@@ -52,6 +59,13 @@ public class Produto {
         this.categoria = categoria;
         this.usuario = usuario;
         this.dataCadastro = LocalDateTime.now();
+    }
+
+    public void associaImagens(Set<String> links) {
+        Set<ImagemProduto> lista =
+                links.stream().map(link -> new ImagemProduto(this,link)).collect(Collectors.toSet());
+
+        this.imagens.addAll(lista);
     }
 
     public Long getId() {
@@ -80,5 +94,24 @@ public class Produto {
 
     public LocalDateTime getDataCadastro() {
         return dataCadastro;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", valor=" + valor +
+                ", quantidade=" + quantidade +
+                ", descricao='" + descricao + '\'' +
+                ", categoria=" + categoria +
+                ", usuario=" + usuario +
+                ", imagens=" + imagens +
+                ", dataCadastro=" + dataCadastro +
+                '}';
+    }
+
+    public boolean pertenceAoUsuario(Usuario usuario) {
+        return Objects.equals(usuario.getId(), this.usuario.getId());
     }
 }
