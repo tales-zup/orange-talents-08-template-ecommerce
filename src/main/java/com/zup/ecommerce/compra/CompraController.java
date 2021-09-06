@@ -1,5 +1,7 @@
 package com.zup.ecommerce.compra;
 
+import com.zup.ecommerce.commons.utils.email.Email;
+import com.zup.ecommerce.commons.utils.email.EmailService;
 import com.zup.ecommerce.produto.Produto;
 import com.zup.ecommerce.produto.ProdutoRepository;
 import com.zup.ecommerce.usuario.Usuario;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/compras")
@@ -23,6 +24,9 @@ public class CompraController {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @PostMapping
     public CompraDto cadastrarCompra(@RequestBody @Valid CompraRequest request) {
@@ -39,6 +43,9 @@ public class CompraController {
         produto.diminuirUmaUnidadeNoEstoque();
         produtoRepository.save(produto);
         compra = compraRepository.save(compra);
+
+        Email email = emailService.construir(compra);
+        emailService.enviar(email);
 
         return new CompraDto(compra.getId(), compra.getGateway(), compra.getProduto().getId(), compra.getQuantidade(),
                 compra.getUsuario().getId(), compra.getValor(), compra.getStatus());

@@ -34,7 +34,7 @@ public class PerguntaController {
         Pergunta pergunta = request.toModel(produtoRepository, logado);
         pergunta = perguntaRepository.save(pergunta);
         Email email = emailService.construir(pergunta);
-        emailService.send(email);
+        emailService.enviar(email);
         return new PerguntaDto(pergunta.getId(), pergunta.getTitulo(), pergunta.getUsuario().getId(),
                 pergunta.getProduto().getId(), pergunta.getDataCadastro());
     }
