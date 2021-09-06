@@ -2,7 +2,6 @@ package com.zup.ecommerce.pergunta;
 
 import com.zup.ecommerce.produto.ProdutoRepository;
 import com.zup.ecommerce.usuario.Usuario;
-import com.zup.ecommerce.usuario.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
