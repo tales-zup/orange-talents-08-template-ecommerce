@@ -29,6 +29,9 @@ public class Pergunta {
     @NotNull
     private LocalDateTime dataCadastro;
 
+    public Pergunta() {
+    }
+
     public Pergunta(String titulo, Usuario usuario, Produto produto) {
         this.titulo = titulo;
         this.usuario = usuario;

@@ -30,7 +30,7 @@ public class OpiniaoController {
 
         opiniaoRepository.save(opiniao);
 
-        return new OpiniaoDto(opiniao.getId(), opiniao.getTitulo(), opiniao.getDescricao(),
+        return new OpiniaoDto(opiniao.getId(), opiniao.getTitulo(), opiniao.getNota(), opiniao.getDescricao(),
                 opiniao.getProduto().getId(), opiniao.getUsuario().getId());
     }
 

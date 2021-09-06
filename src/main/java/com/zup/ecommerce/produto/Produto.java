@@ -1,6 +1,9 @@
 package com.zup.ecommerce.produto;
 
+import com.zup.ecommerce.caracteristica.Caracteristica;
 import com.zup.ecommerce.categoria.Categoria;
+import com.zup.ecommerce.opiniao.Opiniao;
+import com.zup.ecommerce.pergunta.Pergunta;
 import com.zup.ecommerce.usuario.Usuario;
 
 import javax.persistence.*;
@@ -8,6 +11,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,6 +48,15 @@ public class Produto {
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private Set<ImagemProduto> imagens = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto")
+    private List<Caracteristica> caracteristicas;
+
+    @OneToMany(mappedBy = "produto")
+    private List<Opiniao> opinioes;
+
+    @OneToMany(mappedBy = "produto")
+    private List<Pergunta> perguntas;
 
     @NotNull
     private LocalDateTime dataCadastro;
@@ -90,6 +103,18 @@ public class Produto {
 
     public Categoria getCategoria() {
         return categoria;
+    }
+
+    public List<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public List<Opiniao> getOpinioes() {
+        return opinioes;
+    }
+
+    public List<Pergunta> getPerguntas() {
+        return perguntas;
     }
 
     public LocalDateTime getDataCadastro() {

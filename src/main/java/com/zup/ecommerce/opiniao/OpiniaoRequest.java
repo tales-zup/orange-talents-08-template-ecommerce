@@ -29,6 +29,10 @@ public class OpiniaoRequest {
         return titulo;
     }
 
+    public Integer getNota() {
+        return nota;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -39,6 +43,6 @@ public class OpiniaoRequest {
 
     public Opiniao toModel(ProdutoRepository repository, Usuario usuario) {
         Produto produto = repository.findById(idProduto).orElseThrow();
-        return new Opiniao(titulo, descricao, produto, usuario);
+        return new Opiniao(titulo, nota, descricao, produto, usuario);
     }
 }

@@ -34,8 +34,9 @@ public class Opiniao {
     public Opiniao() {
     }
 
-    public Opiniao(String titulo, String descricao, Produto produto, Usuario usuario) {
+    public Opiniao(String titulo, Integer nota, String descricao, Produto produto, Usuario usuario) {
         this.titulo = titulo;
+        this.nota = nota;
         this.descricao = descricao;
         this.produto = produto;
         this.usuario = usuario;
@@ -47,6 +48,10 @@ public class Opiniao {
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public Integer getNota() {
+        return nota;
     }
 
     public String getDescricao() {
