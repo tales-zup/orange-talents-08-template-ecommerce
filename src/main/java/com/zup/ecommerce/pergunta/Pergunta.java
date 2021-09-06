@@ -3,13 +3,12 @@ package com.zup.ecommerce.pergunta;
 import com.zup.ecommerce.produto.Produto;
 import com.zup.ecommerce.usuario.Usuario;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Entity
 public class Pergunta {
 
     @Id
@@ -20,19 +19,21 @@ public class Pergunta {
     private String titulo;
 
     @NotNull
-    private LocalDateTime dataCadastro;
-
-    @NotNull
+    @ManyToOne
     private Usuario usuario;
 
     @NotNull
+    @ManyToOne
     private Produto produto;
 
-    public Pergunta(String titulo, LocalDateTime dataCadastro, Usuario usuario, Produto produto) {
+    @NotNull
+    private LocalDateTime dataCadastro;
+
+    public Pergunta(String titulo, Usuario usuario, Produto produto) {
         this.titulo = titulo;
-        this.dataCadastro = dataCadastro;
         this.usuario = usuario;
         this.produto = produto;
+        this.dataCadastro = LocalDateTime.now();
     }
 
     public Long getId() {
