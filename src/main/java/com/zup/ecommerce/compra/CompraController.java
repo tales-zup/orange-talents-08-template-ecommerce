@@ -25,7 +25,7 @@ public class CompraController {
     private ProdutoRepository produtoRepository;
 
     @PostMapping
-    public String cadastrarCompra(@RequestBody @Valid CompraRequest request) {
+    public CompraDto cadastrarCompra(@RequestBody @Valid CompraRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario logado = (Usuario) authentication.getPrincipal();
 
@@ -38,9 +38,10 @@ public class CompraController {
         Compra compra = request.toModel(produto, logado);
         produto.diminuirUmaUnidadeNoEstoque();
         produtoRepository.save(produto);
-        compraRepository.save(compra);
+        compra = compraRepository.save(compra);
 
-        return "Compra cadastrada!";
+        return new CompraDto(compra.getId(), compra.getGateway(), compra.getProduto().getId(), compra.getQuantidade(),
+                compra.getUsuario().getId(), compra.getValor(), compra.getStatus());
     }
 
 }

@@ -43,4 +43,32 @@ public class Compra {
         this.valor = valor;
         this.status = StatusCompra.INICIADA;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public GatewayPagamento getGateway() {
+        return gateway;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public StatusCompra getStatus() {
+        return status;
+    }
 }
