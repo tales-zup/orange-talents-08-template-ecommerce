@@ -139,4 +139,8 @@ public class Produto {
     public boolean pertenceAoUsuario(Usuario usuario) {
         return Objects.equals(usuario.getId(), this.usuario.getId());
     }
+
+    public void diminuirUmaUnidadeNoEstoque() {
+        this.quantidade--;
+    }
 }
