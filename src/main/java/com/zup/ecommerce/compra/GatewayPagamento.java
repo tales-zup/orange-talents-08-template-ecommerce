@@ -2,8 +2,8 @@ package com.zup.ecommerce.compra;
 
 public enum GatewayPagamento {
 
-    PAGSEGURO("pagseguro.com?returnId={idGeradoDaCompra}&redirectUrl={urlRetornoAppPosPagamento}"),
-    PAYPAL("paypal.com?buyerId={idGeradoDaCompra}&redirectUrl={urlRetornoAppPosPagamento}");
+    PAGSEGURO("/pagseguro?returnId={idGeradoDaCompra}"),
+    PAYPAL("/paypal?buyerId={idGeradoDaCompra}");
 
     private String url;
 
