@@ -35,6 +35,9 @@ public class Compra {
     @NotNull
     private StatusCompra status;
 
+    public Compra() {
+    }
+
     public Compra(GatewayPagamento gateway, Produto produto, Integer quantidade, Usuario usuario, BigDecimal valor) {
         this.gateway = gateway;
         this.produto = produto;
