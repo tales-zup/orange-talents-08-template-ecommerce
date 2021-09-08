@@ -34,8 +34,7 @@ public class CompraController {
     private EmailService emailService;
 
     @PostMapping
-    public ResponseEntity cadastrarCompra(@RequestBody @Valid CompraRequest request,
-                                     HttpServletResponse response) throws IOException {
+    public ResponseEntity cadastrarCompra(@RequestBody @Valid CompraRequest request) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario logado = (Usuario) authentication.getPrincipal();
 
