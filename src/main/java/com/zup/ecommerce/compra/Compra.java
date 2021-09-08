@@ -74,4 +74,8 @@ public class Compra {
     public StatusCompra getStatus() {
         return status;
     }
+
+    public void setStatus(StatusCompra status) {
+        this.status = status;
+    }
 }
