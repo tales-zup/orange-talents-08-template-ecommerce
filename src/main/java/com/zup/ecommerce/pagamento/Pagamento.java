@@ -3,6 +3,8 @@ package com.zup.ecommerce.pagamento;
 import com.zup.ecommerce.compra.Compra;
 
 import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
+import java.time.LocalDateTime;
 
 @Entity
 public class Pagamento {
@@ -17,9 +19,16 @@ public class Pagamento {
     @Enumerated(EnumType.STRING)
     private StatusPagamento status;
 
+    @PastOrPresent
+    private LocalDateTime dataProcessamento;
+
+    public Pagamento() {
+    }
+
     public Pagamento(Compra compra, StatusPagamento status) {
         this.compra = compra;
         this.status = status;
+        this.dataProcessamento = LocalDateTime.now();
     }
 
     public Long getId() {

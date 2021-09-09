@@ -105,6 +105,10 @@ public class Produto {
         return categoria;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public List<Caracteristica> getCaracteristicas() {
         return caracteristicas;
     }
