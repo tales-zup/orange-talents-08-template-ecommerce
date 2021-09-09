@@ -1,6 +1,7 @@
 package com.zup.ecommerce.pagamento;
 
 import com.zup.ecommerce.apiexterna.ApiExterna;
+import com.zup.ecommerce.apiexterna.SistemaNotasRequest;
 import com.zup.ecommerce.apiexterna.SistemaRankingRequest;
 import com.zup.ecommerce.compra.Compra;
 import com.zup.ecommerce.compra.CompraRepository;
@@ -35,6 +36,7 @@ public class PagamentoService {
             throw new IllegalArgumentException("Essa compra já tem um pagamento concluído.");
 
         apiExterna.comunicaSistemaRanking(new SistemaRankingRequest(compra.getId(), compra.getProduto().getUsuario().getId()));
+        apiExterna.comunicaSistemaNotasFiscais(new SistemaNotasRequest(compra.getId(), compra.getUsuario().getId()));
 
         Pagamento pagamento = new Pagamento(compra, StatusPagamento.SUCESSO);
         compra.setStatus(StatusCompra.SUCESSO);

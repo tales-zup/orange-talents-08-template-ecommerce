@@ -15,4 +15,10 @@ public class ApiExternaController {
         return request.toString();
     }
 
+    @PostMapping("/notas-fiscais")
+    public String conectarSistemaNotas(@RequestBody SistemaNotasRequest request) {
+        System.out.println("CONECTADO NO SISTEMA DE NOTAS FISCAIS!");
+        return request.toString();
+    }
+
 }

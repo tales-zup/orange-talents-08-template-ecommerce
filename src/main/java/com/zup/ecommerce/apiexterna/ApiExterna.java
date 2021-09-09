@@ -10,6 +10,9 @@ import javax.validation.Valid;
 public interface ApiExterna {
 
     @PostMapping(value = "/rankings")
-    String comunicaSistemaRanking(@RequestBody @Valid SistemaRankingRequest form);
+    String comunicaSistemaRanking(@RequestBody @Valid SistemaRankingRequest request);
+
+    @PostMapping(value = "/notas-fiscais")
+    String comunicaSistemaNotasFiscais(@RequestBody @Valid SistemaNotasRequest request);
 
 }
