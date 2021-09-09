@@ -1,6 +1,7 @@
 package com.zup.ecommerce.commons.utils.email;
 
 import com.zup.ecommerce.compra.Compra;
+import com.zup.ecommerce.pagamento.Pagamento;
 import com.zup.ecommerce.pergunta.Pergunta;
 
 public interface EmailService {
@@ -10,4 +11,6 @@ public interface EmailService {
     Email construir(Pergunta pergunta);
 
     Email construir(Compra compra);
+
+    Email construir(Pagamento pagamento);
 }

@@ -3,6 +3,8 @@ package com.zup.ecommerce.pagamento;
 import com.zup.ecommerce.apiexterna.ApiExterna;
 import com.zup.ecommerce.apiexterna.SistemaNotasRequest;
 import com.zup.ecommerce.apiexterna.SistemaRankingRequest;
+import com.zup.ecommerce.commons.utils.email.Email;
+import com.zup.ecommerce.commons.utils.email.EmailService;
 import com.zup.ecommerce.compra.Compra;
 import com.zup.ecommerce.compra.CompraRepository;
 import com.zup.ecommerce.compra.GatewayPagamento;
@@ -25,6 +27,9 @@ public class PagamentoService {
     @Autowired
     private ApiExterna apiExterna;
 
+    @Autowired
+    private EmailService emailService;
+
     @Transactional
     public PagamentoDto cadastrarPagamento(Long idCompra, GatewayPagamento gatewayPagamento) {
 
@@ -42,6 +47,8 @@ public class PagamentoService {
         compra.setStatus(StatusCompra.SUCESSO);
         compraRepository.save(compra);
         pagamento = pagamentoRepository.save(pagamento);
+        Email email = emailService.construir(pagamento);
+        emailService.enviar(email);
         return new PagamentoDto(pagamento.getId(), compra.getId(), gatewayPagamento.getStatusSucesso());
 
     }
